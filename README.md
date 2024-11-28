@@ -149,3 +149,5 @@ Example body:
 ## Functionalities that are not implemented
 
 - Fetching articles should be done with better api. News API Latest news is returnin only few articles from known source.
+- Fetch latest news, and implement infinite scroll for latest news
+- Support mobile view
