@@ -1,0 +1,49 @@
+@use '../variables.scss';
+
+.sign-in,
+.sign-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 500px;
+  flex-direction: column;
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  a {
+    font-weight: variables.$font-weight-bold;
+    color: variables.$primary-color;
+  }
+
+  form {
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 20px;
+    border: 1px solid #bfbfbf;
+    border-radius: 8px;
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px 10px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin: 10px 0;
+      width: 100%;
+    }
+  }
+}

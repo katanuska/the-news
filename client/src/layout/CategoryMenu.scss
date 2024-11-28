@@ -1,0 +1,45 @@
+@use '../variables.scss';
+
+.menu {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    background-color: inherit;
+    color: inherit;
+    border-radius: 5px;
+
+    img {
+      font-size: 20px;
+      opacity: 50%;
+      filter: invert(0%) sepia(90%) saturate(25%) hue-rotate(318deg)
+        brightness(103%) contrast(100%);
+    }
+
+    &.selected {
+      background-color: white;
+      box-shadow: variables.$card-shedow;
+
+      img {
+        opacity: 100%;
+        filter: invert(18%) sepia(99%) saturate(2789%) hue-rotate(354deg)
+          brightness(86%) contrast(84%);
+      }
+    }
+  }
+}
+
+.menu-item {
+  width: 63px;
+  height: 63px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.menu-text {
+  margin-top: 5px;
+  font-weight: variables.$font-weight-semibold;
+}

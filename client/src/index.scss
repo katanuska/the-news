@@ -1,0 +1,80 @@
+@use 'variables.scss';
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: variables.$page-background-color;
+  color: variables.$primary-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  font-size: 12px;
+  color: variables.$text-color;
+
+  #root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 32px;
+    letter-spacing: -0.14px;
+    line-height: 38.73px;
+  }
+  h2 {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: variables.$font-weight-bold;
+    letter-spacing: -0.11px;
+    margin: 0 0 11px 0;
+  }
+
+  h3 {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.12px;
+  }
+
+  p {
+    margin: 0;
+    small {
+      font-size: 10px;
+      line-height: 16px;
+      letter-spacing: -0.02px;
+      color: variables.$text-blue;
+    }
+  }
+
+  a {
+    color: black;
+    text-decoration: inherit;
+  }
+
+  input {
+    border: none;
+    border-radius: 10px;
+    box-shadow: variables.$card-shedow;
+  }
+
+  button {
+    border: none;
+    background-color: variables.$primary-color;
+    color: variables.$button-text-color;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 6px;
+
+    &.big-button {
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: bold;
+    }
+
+    &.light {
+      background-color: variables.$button-light-color;
+      color: variables.$button-light-text-color;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@use '../variables.scss';
+
+.user-button {
+  color: variables.$button-light-text-color;
+  border: 1px solid variables.$primary-color;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 6px;
+  background-color: variables.$button-light-color;
+  cursor: pointer;
+
+  a {
+    color: variables.$primary-color;
+  }
+}

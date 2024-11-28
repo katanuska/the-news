@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // Ensures module resolution works relative to the root folder
+    "paths": {
+      "@server/*": ["server/src/*"], // Example of setting path alias for the server folder
+      "@client/*": ["client/src/*"] // Example of setting path alias for the client folder
+    },
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "sourceMap": true
+  },
+  "include": [
+    "server/**/*", // Include server TypeScript files
+    "client/**/*" // Include client TypeScript files (if necessary)
+  ]
+}

@@ -1,0 +1,48 @@
+@use '../variables.scss';
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 212px;
+    object-fit: cover;
+    border-top-left-radius: variables.$card-radius;
+    border-top-right-radius: variables.$card-radius;
+  }
+
+  .card-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .category {
+      text-transform: uppercase;
+      font-weight: variables.$font-weight-bold;
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    align-items: center;
+    margin: 12px;
+
+    button {
+      background-color: transparent;
+      margin-left: auto;
+      padding: 0;
+      z-index: 10;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+      opacity: 50%;
+    }
+  }
+}
