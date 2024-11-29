@@ -1,4 +1,4 @@
-import { Article } from './Article';
+import { Article } from '../model/Article';
 import ArticleCard from './ArticleCard';
 import LatestNews from './LatetNews';
 import './Articles.scss';

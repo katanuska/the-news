@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useUser } from '../user/UserContext';
+import { useUser } from '../../auth/user/UserContext';
 import './CategoryMenu.scss';
 
 export type Categorie =
@@ -71,12 +71,12 @@ const FAVORITES = {
   label: 'Favorites',
 };
 
-type CategoriesMenuProps = {
+type CategorieMenuProps = {
   category: Categorie;
   onCategoryChange: (category: Categorie) => void;
 };
 
-const CategoriesMenu: React.FC<CategoriesMenuProps> = ({
+const CategorieMenu: React.FC<CategorieMenuProps> = ({
   category: category,
   onCategoryChange,
 }) => {
@@ -110,4 +110,4 @@ const CategoriesMenu: React.FC<CategoriesMenuProps> = ({
   );
 };
 
-export default CategoriesMenu;
+export default CategorieMenu;

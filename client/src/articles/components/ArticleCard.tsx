@@ -1,4 +1,4 @@
-import { useUser } from '../user/UserContext';
+import { useUser } from '../../auth/user/UserContext';
 import './ArticleCard.scss';
 
 type ArticleCardProps = {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { apiFetch } from '../api';
-import { User } from './User';
+import { User } from './user/LoginCredentials';
 import { Link, useNavigate } from 'react-router-dom';
-import './signin.scss';
-import { useUser } from '../user/UserContext';
+import './Auth.scss';
+import { useUser } from './user/UserContext';
 
 const SignIn: React.FC = () => {
   const [formData, setFormData] = useState<User>({

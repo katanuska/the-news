@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { apiFetch } from '../api';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import './signin.scss';
+import './Auth.scss';
 
 const SignUp: React.FC = () => {
   const [formData, setFormData] = useState({

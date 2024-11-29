@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './UserActions.scss';
-import { useUser } from '../user/UserContext';
+import { useUser } from '../../auth/user/UserContext';
 
 const UserActions = () => {
   const { user } = useUser();
