@@ -15,7 +15,7 @@ export const validateTokenMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.path.startsWith('/favorite')) {
+  if (!(req.path.startsWith('/favorite') || req.path === '/auth/user')) {
     next();
     return;
   }

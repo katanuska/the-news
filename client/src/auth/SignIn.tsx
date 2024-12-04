@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { apiFetch } from '../api';
 import { User } from './user/LoginCredentials';
-import { Link, useNavigate } from 'react-router-dom';
-import './Auth.scss';
 import { useUser } from './user/UserContext';
+import './Auth.scss';
 
-const SignIn: React.FC = () => {
+type SignInProps = {
+  onSignUp: () => void;
+  onSuccess?: () => void;
+  onError?: () => void;
+};
+const SignIn: React.FC<SignInProps> = ({ onSignUp, onSuccess, onError }) => {
   const [formData, setFormData] = useState<User>({
     email: '',
     password: '',
   });
+  const [error, setError] = useState<boolean>(false);
 
-  const navigate = useNavigate();
   const { signin } = useUser();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,9 +33,10 @@ const SignIn: React.FC = () => {
         body: JSON.stringify(formData),
       });
       signin(signedUser);
-      navigate('/');
+      onSuccess?.();
     } catch (error) {
-      alert('Login failed!');
+      setError(true);
+      onError?.();
     }
   };
 
@@ -67,7 +72,11 @@ const SignIn: React.FC = () => {
         <button type="submit">Log In</button>
       </form>
       <div>
-        New to The News? <Link to="/signup">Sign up</Link>
+        New to The News?{' '}
+        <button className="link" onClick={onSignUp}>
+          Sign up
+        </button>
+        {error && <div>Error signing in.</div>}
       </div>
     </div>
   );

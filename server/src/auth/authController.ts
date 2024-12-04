@@ -1,9 +1,12 @@
-// src/controllers/authController.ts
 import { Request, Response } from 'express';
 import { signup, signin, verifyUser } from './authService';
 import { CreateUserDTO } from './model/newUserDTO';
 
 export const users: { [key: string]: { email: string; password: string } } = {}; // In-memory user data
+
+export const getCurrentUser = async (req: Request, res: Response) => {
+  res.json(req.user);
+};
 
 export const signupController = async (req: Request, res: Response) => {
   const { email, password, firstName, lastName } = req.body as CreateUserDTO;
@@ -23,11 +26,20 @@ export const signupController = async (req: Request, res: Response) => {
     res.status(201).json(user);
   } catch (error) {
     if (error instanceof Error) {
-      res.status(500).json({ message: error.message });
+      res.status(400).json({ message: error.message });
     } else {
       res.status(500).json({ message: 'An unexpected error occurred.' });
     }
   }
+};
+
+const setTokenCookie = (res: Response, token: string) => {
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'Strict' as any,
+    maxAge: 60 * 60 * 1000, // 1 hour
+  });
 };
 
 export const signinController = async (req: Request, res: Response) => {
@@ -40,12 +52,8 @@ export const signinController = async (req: Request, res: Response) => {
 
   try {
     const { user, token } = await signin(email, password);
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Strict' as any,
-      maxAge: 60 * 60 * 1000, // 1 hour
-    });
+
+    setTokenCookie(res, token);
     res.json(user);
   } catch (error) {
     if (error instanceof Error) {
@@ -65,9 +73,15 @@ export const verifyUserController = async (req: Request, res: Response) => {
   }
 
   try {
-    // TODO: redirect to the home page
     verifyUser(token as string);
-    res.json('Verify successfull');
+    if (!process.env.CLIENT_URL) {
+      console.error('Client URL is not specified.');
+      res.status(204);
+      return;
+    }
+
+    setTokenCookie(res, token);
+    res.redirect(process.env.CLIENT_URL);
   } catch (error) {
     if (error instanceof Error) {
       res.status(401).json({ message: error.message });

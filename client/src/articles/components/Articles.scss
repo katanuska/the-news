@@ -8,6 +8,7 @@
   grid-gap: 21px;
   grid-auto-flow: dense;
   grid-template-rows: auto auto;
+  height: 100vh;
 
   .card {
     background-color: variables.$card-background-color;

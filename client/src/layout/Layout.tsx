@@ -1,13 +1,13 @@
-import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import './Layout.scss';
+import ArticlesPage from '../articles/ArticlesPage';
 
 function Layout() {
   return (
     <>
       <Header />
       <div className="app">
-        <Outlet />
+        <ArticlesPage />
       </div>
     </>
   );

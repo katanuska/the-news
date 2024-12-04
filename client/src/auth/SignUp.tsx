@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import { apiFetch } from '../api';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import './Auth.scss';
 
-const SignUp: React.FC = () => {
+type SignUpProps = {
+  onSignIn: () => void;
+  onSuccess?: () => void;
+  onError?: () => void;
+};
+
+const SignUp: React.FC<SignUpProps> = ({ onSignIn, onSuccess, onError }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     firstName: '',
     lastName: '',
   });
-
-  const navigate = useNavigate();
+  const [signUpResult, setSignUpResult] = useState<'success' | 'error' | null>(
+    null
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // TODO: Add password complexity validation
-    // TODO: Don't send password as plain string
-    // TODO: Add resend verifiction mail
     // TODO: Add forgot pasword
 
     setFormData({
@@ -33,12 +36,34 @@ const SignUp: React.FC = () => {
         method: 'POST',
         body: JSON.stringify(formData),
       });
-      // TODO: Tell user to verificate from mail
-      navigate('/signin');
+      setSignUpResult('success');
+      onSuccess?.();
     } catch (error) {
-      alert('Signup failed!'); // TODO show error on page
+      setSignUpResult('error');
+      onError?.();
     }
   };
+
+  if (signUpResult === 'success') {
+    return (
+      <div className="sign-up">
+        <h2>Check your email</h2>
+        <p>
+          Verification mail nas been sent to <i>{formData.email}</i>. Pleas
+          follow the link in the email to complete your registration.
+        </p>
+
+        {/* TODO: resend verification email
+        <div>
+          If you did not received this email, click{' '}
+          <button className="link" onClick={handleSendVerificationMail}>
+            here
+          </button>{' '}
+          to resend it.
+        </div> */}
+      </div>
+    );
+  }
 
   return (
     <div className="sign-up">
@@ -89,10 +114,15 @@ const SignUp: React.FC = () => {
             required
           />
         </div>
+
         <button type="submit">Sign Up</button>
+        {signUpResult === 'error' && <div>Error signing up.</div>}
       </form>
       <div>
-        Have an account? <Link to="/signin">Log in</Link>
+        Have an account?{' '}
+        <button className="link" onClick={onSignIn}>
+          Log in
+        </button>
       </div>
     </div>
   );

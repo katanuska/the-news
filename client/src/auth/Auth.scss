@@ -2,19 +2,21 @@
 
 .sign-in,
 .sign-up {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  flex-direction: column;
+  padding: 20px;
 
   h2 {
     margin-bottom: 30px;
   }
 
-  a {
+  p {
+    margin-bottom: 20px;
+  }
+
+  button.link {
     font-weight: variables.$font-weight-bold;
     color: variables.$primary-color;
+    background-color: inherit;
+    padding: 0;
   }
 
   form {

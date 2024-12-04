@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.scss';
+import UserActions from '../auth/UserActions';
 
 const Header: React.FC = () => {
   //TODO: add linear gradient and image
@@ -13,6 +14,8 @@ const Header: React.FC = () => {
           </h3>
         </div>
         <div className="header-right">
+          <UserActions />
+
           <h3 className="dismiss-text">No, Thanks</h3>
           <button className="get-button big-button light">GET</button>
         </div>

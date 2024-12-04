@@ -4,7 +4,6 @@ import { Article } from './model/Article';
 import Articles from './components/Articles';
 import SearchBar from './components/SearchBar';
 import CategorieMenu, { Categorie } from './components/CategoryMenu';
-import UserActions from './components/UserActions';
 import { useUser } from '../auth/user/UserContext';
 import './ArticlePage.scss';
 
@@ -141,16 +140,12 @@ function ArticlesPage() {
         <div className="search-bar">
           <SearchBar onSearch={handleSearch} />
         </div>
-        <div className="user-actions">
-          <UserActions />
-        </div>
       </div>
       <div className="pageContent">
         <CategorieMenu
           category={category}
           onCategoryChange={handleCategoryChange}
         />
-
         <Articles
           articles={vbisibleArticles}
           onFavoriteChange={handleFavoriteChange}
