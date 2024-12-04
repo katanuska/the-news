@@ -2,28 +2,14 @@ import './UserActions.scss';
 import { useUser } from './user/UserContext';
 import Modal from '../components/Modal';
 import SignIn from './SignIn';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SignUp from './SignUp';
-import { apiFetch } from '../api';
 
 const UserActions = () => {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [action, setAction] = useState<'signUp' | 'signIn' | null>(null);
 
-  const { user, signin } = useUser();
-
-  const getCurrentUser = async () => {
-    const currentUser = await apiFetch('/auth/user', {
-      method: 'GET',
-    });
-    signin(currentUser);
-  };
-
-  useEffect(() => {
-    if (!user) {
-      getCurrentUser();
-    }
-  }, [user]);
+  const { user } = useUser();
 
   const handleOpenSignUp = () => {
     setModalOpen(true);

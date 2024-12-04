@@ -6,6 +6,7 @@ import React, {
   useEffect,
 } from 'react';
 import { UserDetails } from './User';
+import { apiFetch } from '../../api';
 
 interface UserContextType {
   user: UserDetails | null;
@@ -23,19 +24,21 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
   const signin = (userInfo: UserDetails) => {
     setUser(userInfo);
-    localStorage.setItem('user', JSON.stringify(userInfo));
   };
 
   //TODO: implement signout
+  const loadCurrentUser = async () => {
+    const currentUser = await apiFetch('/auth/user', {
+      method: 'GET',
+    });
+
+    if (currentUser) {
+      setUser(currentUser);
+    }
+  };
 
   useEffect(() => {
-    const userInfoString = localStorage.getItem('user');
-
-    if (!userInfoString) return;
-    const userInfo = JSON.parse(userInfoString);
-
-    if (!userInfo) return;
-    setUser(userInfo);
+    loadCurrentUser();
   }, []);
 
   return (
