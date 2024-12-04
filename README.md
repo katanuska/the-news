@@ -23,6 +23,17 @@ npm start
 
 ### Authentication
 
+- `GET /auth/user`
+Example response:
+
+```json
+{
+  "email": "test@email.com",
+  "firstName": "Test",
+  "lastName": "User"
+}
+```
+
 - `POST /auth/signup`
 
 Example request body:
