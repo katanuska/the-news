@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { apiFetch } from '../api';
+import { apiFetch } from '../../api';
 import './Auth.scss';
 
 type SignUpProps = {

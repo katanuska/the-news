@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { apiFetch } from '../api';
-import { User } from './user/LoginCredentials';
-import { useUser } from './user/UserContext';
+import { LoginCredentials } from '../model/LoginCredentials';
+import { useUser } from '../UserContext';
+import AuthApi from '../api/AuthApi';
 import './Auth.scss';
 
 type SignInProps = {
@@ -10,13 +10,13 @@ type SignInProps = {
   onError?: () => void;
 };
 const SignIn: React.FC<SignInProps> = ({ onSignUp, onSuccess, onError }) => {
-  const [formData, setFormData] = useState<User>({
+  const [formData, setFormData] = useState<LoginCredentials>({
     email: '',
     password: '',
   });
   const [error, setError] = useState<boolean>(false);
 
-  const { signin } = useUser();
+  const { setUser } = useUser();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -28,11 +28,8 @@ const SignIn: React.FC<SignInProps> = ({ onSignUp, onSuccess, onError }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const signedUser = await apiFetch('/auth/signin', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-      });
-      signin(signedUser);
+      const signedUser = await AuthApi.signIn(formData);
+      setUser(signedUser);
       onSuccess?.();
     } catch (error) {
       setError(true);

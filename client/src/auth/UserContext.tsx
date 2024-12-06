@@ -5,12 +5,12 @@ import React, {
   ReactNode,
   useEffect,
 } from 'react';
-import { UserDetails } from './User';
-import { apiFetch } from '../../api';
+import { User } from './model/User';
+import { apiFetch } from '../api';
 
 interface UserContextType {
-  user: UserDetails | null;
-  signin: (userInfo: UserDetails) => void;
+  user: User | null;
+  setUser: (user: User) => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -20,11 +20,7 @@ interface UserProviderProps {
 }
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<UserDetails | null>(null);
-
-  const signin = (userInfo: UserDetails) => {
-    setUser(userInfo);
-  };
+  const [user, setUser] = useState<User | null>(null);
 
   //TODO: implement signout
   const loadCurrentUser = async () => {
@@ -42,7 +38,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, signin }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
     </UserContext.Provider>
   );

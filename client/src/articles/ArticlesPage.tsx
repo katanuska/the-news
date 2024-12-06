@@ -4,7 +4,7 @@ import { Article } from './model/Article';
 import Articles from './components/Articles';
 import SearchBar from './components/SearchBar';
 import CategorieMenu, { Categorie } from './components/CategoryMenu';
-import { useUser } from '../auth/user/UserContext';
+import { useUser } from '../auth/UserContext';
 import './ArticlePage.scss';
 
 function ArticlesPage() {

@@ -1,4 +1,4 @@
-import { UserProvider } from './auth/user/UserContext';
+import { UserProvider } from './auth/UserContext';
 import Layout from './layout/Layout';
 
 function App() {

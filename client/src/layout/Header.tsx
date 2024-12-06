@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.scss';
-import UserActions from '../auth/UserActions';
+import UserActions from '../auth/components/UserActions';
 
 const Header: React.FC = () => {
   //TODO: add linear gradient and image

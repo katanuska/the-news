@@ -1,6 +1,6 @@
 import './UserActions.scss';
-import { useUser } from './user/UserContext';
-import Modal from '../components/Modal';
+import { useUser } from '../UserContext';
+import Modal from '../../components/Modal';
 import SignIn from './SignIn';
 import { useState } from 'react';
 import SignUp from './SignUp';

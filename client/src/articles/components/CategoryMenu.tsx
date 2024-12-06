@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useUser } from '../../auth/user/UserContext';
+import { useUser } from '../../auth/UserContext';
 import './CategoryMenu.scss';
 
 export type Categorie =
