@@ -6,5 +6,4 @@ export interface Article {
   category: string;
   publishedAt: string;
   author?: string;
-  isFavorite?: boolean;
 }

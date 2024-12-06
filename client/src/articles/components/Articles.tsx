@@ -1,15 +1,29 @@
 import { Article } from '../model/Article';
 import ArticleCard from './ArticleCard';
 import LatestNews from './LatetNews';
+import AddToFavorite from '../favorite/AddToFavorite';
 import './Articles.scss';
 
 type ArticlesProps = {
   articles: Article[];
-  onFavoriteChange: (article: Article, favorite: boolean) => void;
+  canAddToFavorite: boolean;
 };
 
-const Articles: React.FC<ArticlesProps> = ({ articles, onFavoriteChange }) => {
+const Articles: React.FC<ArticlesProps> = ({ articles, canAddToFavorite }) => {
   // TODO: implement infinite scroll
+
+  const getArticleComponent = (article: Article) => {
+    if (canAddToFavorite) {
+      return (
+        <AddToFavorite article={article}>
+          <ArticleCard {...article} />
+        </AddToFavorite>
+      );
+    } else {
+      return <ArticleCard {...article} />;
+    }
+  };
+
   return (
     <div className="articles-container">
       <div
@@ -22,10 +36,7 @@ const Articles: React.FC<ArticlesProps> = ({ articles, onFavoriteChange }) => {
       </div>
       {articles.map((article) => (
         <div className="card" key={article.url}>
-          <ArticleCard
-            {...article}
-            onFavoriteChange={(favorite) => onFavoriteChange(article, favorite)}
-          />
+          {getArticleComponent(article)}
         </div>
       ))}
     </div>

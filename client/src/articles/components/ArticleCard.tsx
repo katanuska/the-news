@@ -1,4 +1,3 @@
-import { useUser } from '../../auth/UserContext';
 import './ArticleCard.scss';
 
 type ArticleCardProps = {
@@ -7,8 +6,6 @@ type ArticleCardProps = {
   url: string;
   category: string;
   author?: string;
-  isFavorite?: boolean;
-  onFavoriteChange: (favorite: boolean) => void;
 };
 
 const ArticleCard: React.FC<ArticleCardProps> = ({
@@ -17,17 +14,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   url,
   category,
   author,
-  isFavorite,
-  onFavoriteChange,
 }) => {
-  const { user } = useUser();
-  const showFavorite = !!user;
-
-  const handleFavoriteChange = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    onFavoriteChange(!isFavorite);
-  };
-
   return (
     <a
       href={url}
@@ -44,15 +31,6 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       </div>
       <div className="card-footer">
         <p className="author">{author}</p>
-        {showFavorite && (
-          <button onClick={handleFavoriteChange}>
-            {isFavorite ? (
-              <img src="/FavoritesFull.svg" alt="Remove from favorites" />
-            ) : (
-              <img src="/Favorites.svg" alt="Make this article your favorite" />
-            )}
-          </button>
-        )}
       </div>
     </a>
   );
